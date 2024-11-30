@@ -5,6 +5,7 @@ import {AiFillStar} from 'react-icons/ai'
 import {BiLinkExternal} from 'react-icons/bi'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
+// eslint-disable-next-line import/extensions
 import SimilarJobs from '../SimilarJobs'
 import './index.css'
 
@@ -15,7 +16,7 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class AboutJob extends Component {
+class AboutJobItem extends Component {
   state = {
     jobDataDetails: [],
     similarJobsData: [],
@@ -26,22 +27,20 @@ class AboutJob extends Component {
     this.getJobData()
   }
 
-  getJobData = async () => {
+  // eslint-disable-next-line no-unused-vars
+  getJobData = async props => {
     const {match} = this.props
     const {params} = match
     const {id} = params
-
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
-
     const jwtToken = Cookies.get('jwt_token')
     const jobDetailsApiUrl = `https://apis.ccbp.in/jobs/${id}`
     const optionsJobData = {
       headers: {Authorization: `Bearer ${jwtToken}`},
       method: 'GET',
     }
-
     const responseJobData = await fetch(jobDetailsApiUrl, optionsJobData)
     if (responseJobData.ok === true) {
       const fetchedJobData = await responseJobData.json()
@@ -78,7 +77,6 @@ class AboutJob extends Component {
           title: eachItem.title,
         }),
       )
-
       this.setState({
         jobDataDetails: updatedJobDetailsData,
         similarJobsData: updatedSimilarJobDetails,
@@ -93,12 +91,12 @@ class AboutJob extends Component {
 
   renderJobDetailsSuccessView = () => {
     const {jobDataDetails, similarJobsData} = this.state
-
     if (jobDataDetails.length >= 1) {
       const {
         companyLogoUrl,
         companyWebsiteUrl,
         employmentType,
+        // eslint-disable-next-line no-unused-vars
         id,
         jobDescription,
         lifeAtCompany,
@@ -108,7 +106,6 @@ class AboutJob extends Component {
         skills,
         title,
       } = jobDataDetails[0]
-
       return (
         <>
           <div className="job-item-container">
@@ -200,10 +197,10 @@ class AboutJob extends Component {
         alt="failure view"
       />
       <h1>Oops! Something Went Wrong</h1>
-      <p>We cannot seem to find the page you are looking for.</p>
+      <p>we cannot seem to find the page you are looking for.</p>
       <div className="btn-container-failure">
         <button
-          className="failure-job-details-btn"
+          className="failure-jod-details-btn"
           type="button"
           onClick={this.onRetryJobDetailsAgain}
         >
@@ -221,6 +218,7 @@ class AboutJob extends Component {
 
   renderJobDetails = () => {
     const {apiStatus} = this.state
+
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderJobDetailsSuccessView()
@@ -245,4 +243,4 @@ class AboutJob extends Component {
   }
 }
 
-export default AboutJob
+export default AboutJobItem

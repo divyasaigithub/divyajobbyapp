@@ -6,6 +6,7 @@ import {BiLinkExternal} from 'react-icons/bi'
 import {MdLocationOn} from 'react-icons/md'
 
 import Header from '../Header'
+// eslint-disable-next-line import/extensions
 import SimilarJobItem from '../SimilarJobItem'
 import SkillsCard from '../SkillsCard'
 import './index.css'
@@ -78,7 +79,6 @@ class JobItemDetails extends Component {
       const data = await response.json()
       console.log(data)
       const updatedData = this.getFormattedData(data.job_details)
-
       const updatedSimilarJobsData = data.similar_jobs.map(eachSimilarJob =>
         this.getFormattedSimilarData(eachSimilarJob),
       )

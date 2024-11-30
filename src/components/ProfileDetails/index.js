@@ -39,7 +39,6 @@ class ProfileCard extends Component {
         shortBio: data.profile_details.short_bio,
       }
       this.setState({apiStatus: apiStatusConstants.success, profileData})
-     
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
@@ -53,7 +52,6 @@ class ProfileCard extends Component {
         <img src={profileImageUrl} alt="profile" className="profile-img" />
         <h1 className="profile-heading">{name}</h1>
         <p className="profile-bio">{shortBio}</p>
-
       </div>
     )
   }
@@ -76,6 +74,7 @@ class ProfileCard extends Component {
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
+
   render() {
     const {apiStatus} = this.state
 

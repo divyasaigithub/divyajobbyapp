@@ -1,5 +1,7 @@
 import {Link, withRouter} from 'react-router-dom'
+
 import Cookies from 'js-cookie'
+
 import {FiLogOut} from 'react-icons/fi'
 import {AiFillHome} from 'react-icons/ai'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
@@ -11,6 +13,7 @@ const Header = props => {
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
+
   return (
     <nav className="nav-header">
       <div className="nav-content">
@@ -18,11 +21,11 @@ const Header = props => {
           <Link to="/">
             <img
               className="website-logo"
-              src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
-             
+              src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
               alt="website logo"
             />
           </Link>
+
           <ul className="nav-bar-mobile-icons-container">
             <li>
               <Link to="/">
@@ -40,7 +43,6 @@ const Header = props => {
                 className="nav-mobile-btn"
                 onClick={onClickLogout}
               >
-                
                 <FiLogOut />
               </button>
             </li>
@@ -68,17 +70,15 @@ const Header = props => {
               </Link>
             </li>
           </ul>
-          
-            <button
-              type="button"
-              className="logout-desktop-btn"
-              onClick={onClickLogout}
-            >
-              Logout
-            </button>
-          </div>
+          <button
+            type="button"
+            className="logout-desktop-btn"
+            onClick={onClickLogout}
+          >
+            Logout
+          </button>
         </div>
-      
+      </div>
     </nav>
   )
 }
